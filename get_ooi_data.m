@@ -14,9 +14,16 @@ choice = 2;
 %% Get the XML catalog 
 %Enter download link contained in e-mail received from
 %noreply@oceanobservatories.org
+
+%For Resistivity Probe
 webpage = ['http://opendap.oceanobservatories.org:8090/thredds/catalog/'...
            'ooi/ben-larson-noaa/20160927T084046-RS03INT1-MJ03C-10-'...
            'TRHPHA301-streamed-trhph_sample/catalog.html'];
+
+%For H2-H2S-pH sensor (not yet tested)
+% webpage = ['http://opendap.oceanobservatories.org:8090/thredds/catalog/'...
+%            'ooi/ben-larson-noaa/20160928T071241-RS03INT1-MJ03C-09-'...
+%            'THSPHA301-streamed-thsph_sample/catalog.html'];
 
 %Change .html extenstion to .xml for easier reading??
 %NOTE: could just do this manually, but hope to eventually automate the url
