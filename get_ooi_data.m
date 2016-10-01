@@ -30,7 +30,7 @@ webpage = ['http://opendap.oceanobservatories.org:8090/thredds/catalog/'...
 %      request step that is currently done by e-mail
 webpage = strrep(webpage,'.html','.xml');
 
-%Read xml content from url into Matlabc variable.
+%Read xml content from url into Matlab variable.
 c1 = now;
 raw = urlread(webpage);
 
@@ -169,7 +169,11 @@ end
 allData(numLines+1:end,:) = [];
 
 %% Show some data
-dataHead = array2table(allData(1:10,:),'VariableNames',headers)
+if choice==1
+    dataHead = cell2table(allData(1:10,:),'VariableNames',headers)
+elseif choice==2
+    dataHead = array2table(allData(1:10,:),'VariableNames',headers)
+end
 
 %Show final stats
 fprintf(['All data processed \n'...
@@ -181,7 +185,7 @@ fprintf(['All data processed \n'...
 % required to process 5000 row increments. The bigger the array, the bigger
 % the penalty
 %
-%CPU time (s) required to process subsequent 5000 row blocks
+%CPU time (s) required to process consecutive 5000 row blocks
 %w/o pre-allocation     w/ pre-allocation
 %       17.5033                11.0137
 %       21.4969                11.1696
