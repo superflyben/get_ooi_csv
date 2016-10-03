@@ -8,7 +8,7 @@ c0 = now;
 
 %Choose to get data as strings (1) or as numbers (2)
 %NOTE: Option 1 is faster, but results in very large data files
-%--> Consider using memory mapping for this option so prevent maxing out
+%--> Consider using memory mapping for this option to prevent maxing out
 %    computer RAM
 choice = 2;
 %% Get the XML catalog 
@@ -50,7 +50,7 @@ webLines = strsplit(raw,'\n');
 %Get line numbers for all lines containg a dataset tag but NOT the
 %corresponding /dataset end tag
 dataLineNum = setdiff(getlines(webLines,'dataset'),...
-                    getlines(webLines,'/dataset'));
+                      getlines(webLines,'/dataset'));
 
 %% Scrape the catalog for path and file names
 %Initiate storage array for urls
@@ -83,14 +83,11 @@ for i=1:length(address)
     c2 = now;
     csvData = urlread([prefix address{i}]);
     
+    %Show progress
     fprintf(['Data file retrieved from server \n'...
              'Computer time: %f seconds \n'...
              'Clock time: %f seconds \n\n'],...
              (cputime - t0),(now - c2)*24*60*60);
-    
-    %Show progress
-    fprintf(['Data retrieved from server \n'...
-             'Computer time: %f seconds \n\n'],(cputime - t0));
     
     %Split string first by newline (\n),
     strLines = strsplit(csvData,'\n');
